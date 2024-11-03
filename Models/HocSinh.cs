@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ClassStudentManagement.Models
 {
+    [Table("HOCSINH")]
     public class HocSinh
     {
         [Key]

@@ -57,16 +57,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	  <AndroidResource Remove="Pages\**" />
+	  <Compile Remove="Pages\**" />
+	  <EmbeddedResource Remove="Pages\**" />
+	  <MauiCss Remove="Pages\**" />
+	  <MauiXaml Remove="Pages\**" />
+	  <None Remove="Pages\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Pages\ClassPages\" />
-	  <Folder Include="Pages\StudentPages\" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.10" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
 
 </Project>

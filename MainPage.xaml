@@ -8,10 +8,58 @@
           RowDefinitions="Auto, *"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand">
-        <Grid>
+
+        <CollectionView x:Name="DSLop"
+                        ItemsSource="{Binding DSLopHoc}"
+                        Grid.Row="0">
             
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="10" Padding="30, 10">
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Tapped="TapGestureRecognizer_Tapped_Single"
+                                          CommandParameter="{Binding}" />
+
+                            <!-- Double Tap -->
+                            <TapGestureRecognizer NumberOfTapsRequired="2"
+                                          Tapped="TapGestureRecognizer_Tapped_Double"
+                                          CommandParameter="{Binding}" />
+                        </VerticalStackLayout.GestureRecognizers>
+
+                        <Label Text="{Binding IDLop}"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Cyan" />
+
+                        <Label Text="{Binding TenLop}"
+                       FontSize="15" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <Grid ColumnSpacing="30"
+              ColumnDefinitions="200, 200, 200"
+              HorizontalOptions="Center"
+              Grid.Row="1">
+            <Button x:Name="addBtn"
+                Text="Thêm"
+                Clicked="addBtn_Clicked"
+                Grid.Column="0" />
+
+            <Button x:Name="editBtn"
+                Text="Sửa"
+                Clicked="editBtn_Clicked"
+                Grid.Column="1" />
+
+            <Button x:Name="deleteBtn"
+                Text="Chọn Xoá"
+                Clicked="deleteBtn_Clicked"
+                Grid.Column="2" />
         </Grid>
-        
+
     </Grid>
 
 </ContentPage>

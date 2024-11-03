@@ -2,12 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using ClassStudentManagement.Models;
 
+
 namespace ClassStudentManagement.Data
 {
     internal class ClassDbContext : DbContext
     {
-        public DbSet<LopHoc> DSLopHoc { get; set; }
-        public DbSet<HocSinh> DSHocSinh { get; set; }
+        public DbSet<LopHoc> LopHoc { get; set; }
+        public DbSet<HocSinh> HocSinh { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var DbPath = Preferences.Get("DB_PATH", "");
