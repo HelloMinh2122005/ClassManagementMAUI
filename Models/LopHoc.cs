@@ -8,6 +8,7 @@ namespace ClassStudentManagement.Models
     {
         [Key]
         public string IDLop { get; set; }
+        [Required]
         public string TenLop { get; set; }
         public ICollection<HocSinh> DSHStrongLop { get; } = new List<HocSinh>();
     }

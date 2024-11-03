@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ClassStudentManagement.MainPage"
-             Title="Danh sách lớp">
-
+             x:Class="ClassStudentManagement.Pages.LopHocPages.DSHocSinhPage"
+             Title="Danh sách học sinh">
+    
     <Grid Padding="30"
           RowSpacing="10"
           RowDefinitions="Auto, *"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand">
 
-        <CollectionView x:Name="DSLop"
-                        ItemsSource="{Binding DSLopHoc}"
+        <CollectionView x:Name="DSHocSinh"
+                        ItemsSource="{Binding HocSinhCollection}"
                         Grid.Row="0"
                         HeightRequest="400"
                         WidthRequest="1000">
@@ -22,20 +22,23 @@
                         <VerticalStackLayout Spacing="10">
                             <VerticalStackLayout.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1"
-                                          Tapped="TapGestureRecognizer_Tapped_Single"
-                                          CommandParameter="{Binding}" />
-                                <TapGestureRecognizer NumberOfTapsRequired="2"
-                                          Tapped="TapGestureRecognizer_Tapped_Double"
+                                          Tapped="TapGestureRecognizer_Tapped"
                                           CommandParameter="{Binding}" />
                             </VerticalStackLayout.GestureRecognizers>
 
-                            <Label Text="{Binding IDLop}"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       TextColor="Cyan" />
+                            <Label Text="{Binding IDHocSinh}"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="Cyan" />
 
-                            <Label Text="{Binding TenLop}"
-                       FontSize="15" />
+                            <Label Text="{Binding TenHocSinh}"
+                                   FontSize="10" />
+
+                            <Label Text="{Binding NgSinh}"
+                                   FontSize="10" />
+
+                            <Label Text="{Binding IDLop}"
+                                   FontSize="10" />
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>

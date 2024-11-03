@@ -11,7 +11,7 @@ namespace ClassStudentManagement.Mid
         public Database() { }
         public static async Task pickDatabasePathIfNotExist()
         {
-            if (!string.IsNullOrEmpty(Preferences.Get("DATABASE_PATH", ""))) return;
+            if (!string.IsNullOrEmpty(Preferences.Get("DB_PATH", ""))) return;
 
             var fileType = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
             {
@@ -36,14 +36,23 @@ namespace ClassStudentManagement.Mid
                 });
             }
 
-            Preferences.Set("DATABASE_PATH", dbFile.FullPath);
+            Preferences.Set("DB_PATH", dbFile.FullPath);
         }
 
         public static async Task<List<LopHoc>> GetLopHocListAsync()
         {
             using (var context = new ClassDbContext())
-                return await context.LopHoc.ToListAsync();
+            {
+                return await context.LopHoc
+                    .Select(l => new LopHoc
+                    {
+                        IDLop = l.IDLop,
+                        TenLop = l.TenLop ?? string.Empty 
+                    })
+                    .ToListAsync();
+            }
         }
+
 
         public static async Task<List<HocSinh>> GetHocSinhListAsync(string idlop)
         {
@@ -106,20 +115,48 @@ namespace ClassStudentManagement.Mid
         {
             using (var context = new ClassDbContext())
             {
-                var lophoc = context.LopHoc.Single(LopHoc => LopHoc.IDLop == newlop.IDLop);
-                lophoc.TenLop = newlop.TenLop;
+                var lophoc = context.LopHoc.SingleOrDefault(LopHoc => LopHoc.IDLop == newlop.IDLop);
+
+                if (lophoc == null)
+                {
+                    App.Current.MainPage.DisplayAlert("Thông báo", "Lớp học không tồn tại", "OK");
+                    return;
+                }
+
+                if (newlop.TenLop != null)
+                {
+                    lophoc.TenLop = newlop.TenLop;
+                }
+
                 context.SaveChanges();
             }
         }
+
         public static void CapNhatHocSinh(HocSinh newhocsinh)
         {
             using (var context = new ClassDbContext())
             {
-                var hocsinh = context.HocSinh.Single(HocSinh => HocSinh.IDHocSinh == newhocsinh.IDHocSinh);
-                hocsinh.TenHocSinh = newhocsinh.TenHocSinh;
-                hocsinh.NgSinh = newhocsinh.NgSinh;
+                var hocsinh = context.HocSinh.SingleOrDefault(HocSinh => HocSinh.IDHocSinh == newhocsinh.IDHocSinh);
+
+                if (hocsinh == null)
+                {
+                    App.Current.MainPage.DisplayAlert("Thông báo", "Học sinh không tồn tại", "OK");
+                    return;
+                }
+
+                if (newhocsinh.TenHocSinh != null)
+                {
+                    hocsinh.TenHocSinh = newhocsinh.TenHocSinh;
+                }
+
+                if (newhocsinh.NgSinh != null)
+                {
+                    hocsinh.NgSinh = newhocsinh.NgSinh;
+                }
+
                 context.SaveChanges();
             }
         }
+
     }
 }

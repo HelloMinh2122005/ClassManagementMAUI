@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClassStudentManagement.Pages.LopHocPages.ThemLopPage"
+             Title="Thêm lớp mới">
+
+    <VerticalStackLayout WidthRequest="400"
+                     HorizontalOptions="CenterAndExpand">
+
+        <Grid RowSpacing="10"
+          ColumnSpacing="10"
+          RowDefinitions="Auto, Auto"
+          ColumnDefinitions="Auto, *"
+          Padding="30">
+            <Label Text="Nhập mã lớp học"
+               VerticalOptions="Center"
+               Grid.Row="0"
+               Grid.Column="0" />
+            <Entry x:Name="EntryIDLop"
+               Grid.Row="0"
+               Grid.Column="1" />
+
+            <Label Text="Nhập tên lớp học"
+               VerticalOptions="Center"
+               Grid.Row="1"
+               Grid.Column="0" />
+            <Entry x:Name="EntryTenLop"
+               Grid.Row="1"
+               Grid.Column="1" />
+        </Grid>
+
+        <Grid ColumnSpacing="30"
+          ColumnDefinitions="150, 150"
+          HorizontalOptions="Center">
+
+            <Button x:Name="Savebtn"
+                Text="Lưu"
+                Clicked="Savebtn_Clicked"
+                Grid.Column="0" />
+
+            <Button x:Name="Cancelbtn"
+                Text="Hủy"
+                Clicked="Cancelbtn_Clicked"
+                Grid.Column="1" />
+
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
