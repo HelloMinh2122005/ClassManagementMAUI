@@ -53,7 +53,6 @@ namespace ClassStudentManagement.Mid
                 .ToListAsync();
         }
 
-
         public static async Task<List<HocSinh>> GetHocSinhListAsync(string idlop)
         {
             using var context = Context;
@@ -64,7 +63,8 @@ namespace ClassStudentManagement.Mid
             using var context = Context;
             if (context.LopHoc.Any(LopHoc => LopHoc.IDLop == lop.IDLop))
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Mã lớp đã tồn tại", "OK");
+                if (App.Current != null && App.Current.MainPage != null)
+                    App.Current.MainPage.DisplayAlert("Thông báo", "Mã lớp đã tồn tại", "OK");
                 return;
             }
             context.LopHoc.Add(lop);
@@ -75,7 +75,8 @@ namespace ClassStudentManagement.Mid
             using var context = Context;
             if (context.HocSinh.Any(HocSinh => HocSinh.IDHocSinh == hocsinh.IDHocSinh))
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Mã học sinh đã tồn tại", "OK");
+                if (App.Current != null && App.Current.MainPage != null)
+                    App.Current.MainPage.DisplayAlert("Thông báo", "Mã học sinh đã tồn tại", "OK");
                 return;
             }
             context.HocSinh.Add(hocsinh);
@@ -86,7 +87,8 @@ namespace ClassStudentManagement.Mid
             using var context = Context;
             if (lopChon == null)
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng chọn lớp học để xóa", "OK");
+                if (App.Current != null && App.Current.MainPage != null)
+                    App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng chọn lớp học để xóa", "OK");
                 return;
             }
             context.LopHoc.Remove(lopChon);
@@ -97,7 +99,8 @@ namespace ClassStudentManagement.Mid
             using var context = Context;
             if (hsChon == null)
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng chọn học sinh để xóa", "OK");
+                if (App.Current != null && App.Current.MainPage != null)
+                    App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng chọn học sinh để xóa", "OK");
                 return;
             }
             context.HocSinh.Remove(hsChon);
@@ -110,7 +113,8 @@ namespace ClassStudentManagement.Mid
 
             if (lophoc == null)
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Lớp học không tồn tại", "OK");
+                if (App.Current != null && App.Current.MainPage != null)
+                    App.Current.MainPage.DisplayAlert("Thông báo", "Lớp học không tồn tại", "OK");
                 return;
             }
 
@@ -129,7 +133,8 @@ namespace ClassStudentManagement.Mid
 
             if (hocsinh == null)
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Học sinh không tồn tại", "OK");
+                if (App.Current != null && App.Current.MainPage != null)
+                    App.Current.MainPage.DisplayAlert("Thông báo", "Học sinh không tồn tại", "OK");
                 return;
             }
 
